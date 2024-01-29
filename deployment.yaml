@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: test
+  name: app-service
 spec:
   selector:
-    app: test
+    app: app
   ports:
   - protocol: "TCP"
     port: 80
@@ -15,21 +15,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: toapp
+  name: app
 spec:
   selector:
     matchLabels:
-      app: toapp
+      app: app
   replicas:  
   template:
     metadata:
       labels:
-        app: toapp
+        app: app
     spec:
       containers:
-      - name: toapp
-        image: movista/toapp:D.1.1.0
-        #image: 718425808764.dkr.ecr.us-west-2.amazonaws.com/hmkoptimizations:latest 
+      - name: app
+        image: 718425808764.dkr.ecr.us-west-2.amazonaws.com/hmkoptimizations:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8501
