@@ -28,8 +28,8 @@ spec:
     spec:
       containers:
       - name: toapp
-        #image: movista/toapp:D.1.1.0
-        image: 718425808764.dkr.ecr.us-west-2.amazonaws.com/hmkoptimizations:latest 
+        image: movista/toapp:D.1.1.0
+        #image: 718425808764.dkr.ecr.us-west-2.amazonaws.com/hmkoptimizations:latest 
         imagePullPolicy: Always
         ports:
         - containerPort: 8501
