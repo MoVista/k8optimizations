@@ -1,34 +1,18 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: app-service
-spec:
-  selector:
-    app: app
-  ports:
-  - protocol: "TCP"
-    port: 80
-    targetPort: 8501
-  type: LoadBalancer
-
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app
+  name: my-private-app
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: app
-  replicas:  
+      app: my-private-app
   template:
     metadata:
       labels:
-        app: app
+        app: my-private-app
     spec:
+      serviceAccountName: my-ecr-service-account
       containers:
-      - name: app
+      - name: my-container
         image: 718425808764.dkr.ecr.us-west-2.amazonaws.com/hmkoptimizations:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8501
