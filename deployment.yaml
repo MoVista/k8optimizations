@@ -1,19 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-private-app
+  name: my-app-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: my-private-app
+      app: my-app
   template:
     metadata:
       labels:
-        app: my-private-app
+        app: my-app
     spec:
-      serviceAccountName: my-ecr-service-account
+      serviceAccountName: ecr-service-account
       containers:
-      - name: my-container
+      - name: my-app
         image: 718425808764.dkr.ecr.us-west-2.amazonaws.com/hmkoptimizations:latest
-
+        ports:
+        - containerPort: 8051
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8051
