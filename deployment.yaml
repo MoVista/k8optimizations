@@ -38,10 +38,9 @@ spec:
       labels:
         app: app
     spec:
-      serviceAccountName: ecr-service-account
       containers:
       - name: app
-        image: 718425808764.dkr.ecr.us-west-2.amazonaws.com/hmkoptimizations:latest
+        image: rahilhussain/test:555
         imagePullPolicy: Always
         ports:
         - containerPort: 8501
