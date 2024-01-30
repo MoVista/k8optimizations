@@ -1,15 +1,30 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: app-service
+# spec:
+#   selector:
+#     app: app
+#   ports:
+#   - protocol: "TCP"
+#     port: 80
+#     targetPort: 8501
+#   type: LoadBalancer
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-service
+  name: my-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "elb"  # Or "elb" if you prefer a classic load balancer
+    service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-010fd651d21f8c730,subnet-050c863457ba3fd0c,subnet-094ad76910c9255c3"
 spec:
-  selector:
-    app: app
-  ports:
-  - protocol: "TCP"
-    port: 80
-    targetPort: 8501
   type: LoadBalancer
+  selector:
+    app: app  # Your app's selector
+  ports:
+    - protocol: TCP
+      port: 80  # Port to expose on the load balancer
+      targetPort: 8051  # Port your app is running on within the pod
 
 ---
 apiVersion: apps/v1
