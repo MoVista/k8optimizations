@@ -2,6 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"  # Internal LoadBalancer
+    service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-05b9dc15ec1a44fd9,subnet-08cec1b60364470a0"  # Specify subnets
 spec:
   selector:
     app: app
@@ -10,7 +13,6 @@ spec:
     port: 80
     targetPort: 8501
   type: LoadBalancer
-
 ---
 apiVersion: apps/v1
 kind: Deployment
