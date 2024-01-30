@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: rahilhussain/test:555
+        image: rahilhussain/test:003
         imagePullPolicy: Always
         ports:
         - containerPort: 8501
