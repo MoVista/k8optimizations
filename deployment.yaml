@@ -1,27 +1,15 @@
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: app-service
-# spec:
-#   selector:
-#     app: app
-#   ports:
-#   - protocol: "TCP"
-#     port: 80
-#     targetPort: 8501
-#   type: LoadBalancer
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: app-service
 spec:
-  type: LoadBalancer
   selector:
-    app: app  # Your app's selector
+    app: app
   ports:
-    - protocol: TCP
-      port: 80  # Port to expose on the load balancer
-      targetPort: 8051  # Port your app is running on within the pod
+  - protocol: "TCP"
+    port: 80
+    targetPort: 8501
+  type: LoadBalancer
 
 ---
 apiVersion: apps/v1
