@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: 718425808764.dkr.ecr.us-west-2.amazonaws.com/hmkoptimizations:latest
+        image: 718425808764.dkr.ecr.us-west-2.amazonaws.com/hmkoptimizations:3_05_24
         imagePullPolicy: Always
         ports:
         - containerPort: 8501
